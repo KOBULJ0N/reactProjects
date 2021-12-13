@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false,
+    };
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+    const clic = () => {
+      this.setState({
+        active: !this.state.active,
+      });
+    };
+    return (
+      <div className='wrapper'>
+        <div className='card'>
+          <h1>{this.state.active ? 'Create account' : 'Welcome'}</h1>
+          <input type='text' placeholder='Name' />
+          {this.state.active && <input type='email' placeholder='Email' />}
+          <input type='password' placeholder='Password' />
+          <button>{this.state.active ? 'Create' : 'Login '}</button>
+          <a href='#' onClick={() => clic()}>
+            {this.state.active ? 'Sign In' : 'Create account'}
+          </a>
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
