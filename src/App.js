@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
-import './App.css';
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: false,
-    };
-  }
+import SignUp from './SignUp';
+import Login from './LogIn';
+import './App.css'
 
+export default class App extends Component {
+  state = {
+    active: false,
+  };
   render() {
-    const clic = () => {
-      this.setState({
-        active: !this.state.active,
-      });
+    const login = () => {
+      this.setState({ active: false });
     };
+
+    const signUp = () => {
+      this.setState({ active: true });
+    };
+
     return (
       <div className='wrapper'>
-        <div className='card'>
-          <h1>{this.state.active ? 'Create account' : 'Welcome'}</h1>
-          <input type='text' placeholder='Name' />
-          {this.state.active && <input type='email' placeholder='Email' />}
-          <input type='password' placeholder='Password' />
-          <button>{this.state.active ? 'Create' : 'Login '}</button>
-          <a href='#' onClick={() => clic()}>
-            {this.state.active ? 'Sign In' : 'Create account'}
-          </a>
+        <div>
+          {this.state.active ? (
+            <Login onClick={login} />,
+          ) : (
+            <SignUp onClick={signUp} />
+          )}
         </div>
+           
       </div>
     );
   }
